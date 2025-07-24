@@ -24,11 +24,11 @@ export default function ProductPage({ products }) {
         return "pants";
     }
   };
-  const recommended = userSizes[type2Size(product.type)];
+
   return (
     <Layout narrow>
       <main>
-        {recommended}
+
         {product.id && (
           <Grid container style={{ flex: 1 }} spacing={2}>
             <Grid
@@ -75,7 +75,7 @@ export default function ProductPage({ products }) {
                   <ToggleButton
                     style={{
                       fontWeight: "bold",
-                      border: recommended.toUpperCase() === size && "2px solid #3C1992",
+                     // border: recommended.toUpperCase() === size && "2px solid #3C1992",
                     }}>
                     {size}
                   </ToggleButton>
