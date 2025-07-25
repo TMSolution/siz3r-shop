@@ -53,22 +53,16 @@ export default function Home({ products }) {
       return array;
     }
   };
-  function shuffleArray(array) {
-    for (var i = array.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-    }
-  }
-  const finalList = shuffleArray(
-    filterProducts(
-      sortProducts(list)[category],
-      siz3rFilter && userSizes,
-      category,
-      gender
-    )
-  );
+
+  const finalList = filterProducts(
+    sortProducts(list)[category],
+    siz3rFilter && userSizes,
+    category,
+    gender
+  )
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
   return (
     <Layout>
       <Head>
