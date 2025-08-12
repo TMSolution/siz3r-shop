@@ -121,7 +121,7 @@ export default function App(props) {
 
         <script
           id="siz3r_plugin"
-          src="https://siz3r-next-interface.vercel.app/embedScript.js"
+          src="https://siz3r.vercel.app/embedScript.js"
           noreload="true"
         />
         <Siz3rContextProvider>
