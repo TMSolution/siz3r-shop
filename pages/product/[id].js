@@ -15,7 +15,7 @@ import { useContext } from "react";
 export default function ProductPage({ products }) {
   const router = useRouter();
   const product = products[router.query.id] || {};
-  const filename = product ? product.images[0].split("/").pop() : "";
+  const filename = product ? (product?.images?.[0] || "").split("/").pop() : "";
   const { userSizes, gender } = useContext(Siz3rContext);
   const type2Mode = (size) => {
     switch (size) {
