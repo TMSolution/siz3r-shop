@@ -1,4 +1,4 @@
-import { Close } from "@mui/icons-material";
+import { ArrowBackIosNew, Close } from "@mui/icons-material";
 import {
   AppBar,
   Box,
@@ -7,6 +7,7 @@ import {
   IconButton,
   Toolbar,
 } from "@mui/material";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Layout({ children, narrow, category, setCategory }) {
@@ -22,47 +23,65 @@ export default function Layout({ children, narrow, category, setCategory }) {
             sx={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "space-between",
+              justifyContent: setCategory && "space-between",
+              gap: 2,
             }}>
-            <img
-              style={{ maxHeight: "32px", maxWidth: "40vw" }}
-              src="/logo2.png"
-            />
-            <Box
-              sx={{
-                flex: 1,
+            {!setCategory && (
+              <Link href="/">
+                <IconButton>
+                  <ArrowBackIosNew />
+                </IconButton>
+              </Link>
+            )}{" "}
+            <Link
+              href="/"
+              style={{
                 display: "flex",
-                justifyContent: "flex-end",
-                gap: { md: 3, sm: 2, xs: 0 },
-                color: (theme) => theme.palette.text.primary,
-                fontWeight: "100",
-                fontFamily: "LEMON MILK",
-                // fontFamily:"Roboto"
+                alignItems: "center",
+                justifyContent: "center",
               }}>
-              <Button
-                variant={category === "shirt" ? "outlined" : "plain"}
-                onClick={() => setCategory("shirt")}
+              <img
+                style={{ maxHeight: "32px", maxWidth: "40vw" }}
+                src="/logo2.png"
+              />
+            </Link>
+            {setCategory && (
+              <Box
                 sx={{
-                  color: "inherit",
-                  fontWeight: "inherit",
+                  flex: 1,
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  gap: { md: 3, sm: 2, xs: 0 },
+                  color: (theme) => theme.palette.text.primary,
+                  fontWeight: "100",
                   fontFamily: "LEMON MILK",
-                  textTransform: "none",
+                  // fontFamily:"Roboto"
                 }}>
-                Upper
-              </Button>
+                <Button
+                  variant={category === "shirt" ? "outlined" : "plain"}
+                  onClick={() => setCategory("shirt")}
+                  sx={{
+                    color: "inherit",
+                    fontWeight: "inherit",
+                    fontFamily: "LEMON MILK",
+                    textTransform: "none",
+                  }}>
+                  Upper
+                </Button>
 
-              <Button
-                variant={category === "pants" ? "outlined" : "plain"}
-                onClick={() => setCategory("pants")}
-                sx={{
-                  color: "inherit",
-                  fontWeight: "inherit",
-                  fontFamily: "LEMON MILK",
-                  textTransform: "unset",
-                }}>
-                Lower
-              </Button>
-            </Box>
+                <Button
+                  variant={category === "pants" ? "outlined" : "plain"}
+                  onClick={() => setCategory("pants")}
+                  sx={{
+                    color: "inherit",
+                    fontWeight: "inherit",
+                    fontFamily: "LEMON MILK",
+                    textTransform: "unset",
+                  }}>
+                  Lower
+                </Button>
+              </Box>
+            )}
           </Container>
         </Toolbar>
       </AppBar>
