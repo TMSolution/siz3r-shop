@@ -15,6 +15,7 @@ import { useContext } from "react";
 export default function ProductPage({ products }) {
   const router = useRouter();
   const product = products[router.query.id] || {};
+  const filename = product.images[0].split("/").pop();
   const { userSizes, gender } = useContext(Siz3rContext);
   const type2Mode = (size) => {
     switch (size) {
@@ -45,7 +46,7 @@ export default function ProductPage({ products }) {
                 display: "flex",
               }}>
               <img
-                src={product.images[0]}
+                src={`/images/${filename}`}
                 style={{ height: "100%" }}
               />
             </Grid>
@@ -99,7 +100,7 @@ export default function ProductPage({ products }) {
                     window.postMessage(
                       JSON.stringify({
                         type: "siz3r_tryon",
-                        garment: product.images[0],
+                        garment: `https://siz3r-shop.vercel.app/images/${filename}`,
                         bodyPart: product.type,
                         info: {
                           name: product.name,

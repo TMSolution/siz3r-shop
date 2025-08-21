@@ -112,6 +112,7 @@ export default function App(props) {
           newProducts[newItem.id] = newItem;
         } catch (err) {}
       });
+      console.debug(newProducts);
     setProducts(newProducts);
   }, []);
   return (

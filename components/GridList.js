@@ -39,8 +39,17 @@ export default function GridList({ list, userSizes }) {
         {list.map((item, index) => {
           return (
             <Grow key={item.id}>
-              <Grid item sm={12} md={6} lg={3} style={{ width: "100%" }}>
-                <GridItem item={item} userSizes={userSizes} index={index} />
+              <Grid
+                item
+                sm={12}
+                md={6}
+                lg={3}
+                style={{ width: "100%" }}>
+                <GridItem
+                  item={item}
+                  userSizes={userSizes}
+                  index={index}
+                />
               </Grid>
             </Grow>
           );
@@ -53,8 +62,12 @@ export default function GridList({ list, userSizes }) {
 function GridItem({ item, userSizes, index }) {
   const [hover, setHover] = useState(false);
   const [hoveredPhoto, setHoveredPhoto] = useState(null);
+  const filename = item.images[0].split("/").pop();
+
   return (
-    <Link href={`/product/${item.id}`} style={{ textDecoration: "none" }}>
+    <Link
+      href={`/product/${item.id}`}
+      style={{ textDecoration: "none" }}>
       <Card
         style={{
           flex: 1,
@@ -76,7 +89,7 @@ function GridItem({ item, userSizes, index }) {
         )}
         <CardMedia
           sx={{ height: 500 }}
-          image={hoveredPhoto || item.images[0]}
+          image={hoveredPhoto || `/images/${filename}`}
           title="green iguana"
         />
         <CardContent style={{ position: "relative" }}>
@@ -102,11 +115,12 @@ function GridItem({ item, userSizes, index }) {
                 gap: 8,
               }}>
               {item.images.map((src) => {
+                const filename = src.split("/").pop();
                 return (
                   <img
                     height={64}
-                    src={src}
-                    onMouseEnter={() => setHoveredPhoto(src)}
+                    src={`/images/${filename}`}
+                    onMouseEnter={() => setHoveredPhoto(`/images/${filename}`)}
                   />
                 );
               })}
@@ -125,7 +139,7 @@ function GridItem({ item, userSizes, index }) {
                       padding: 4,
                       fontWeight: "bold",
                       borderRadius: 12,
-                      color:"gray",
+                      color: "gray",
                       backgroundColor:
                         userSizes &&
                         userSizes?.[item.type]?.toUpperCase() ===
