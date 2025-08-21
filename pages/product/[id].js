@@ -88,8 +88,21 @@ export default function ProductPage({ products }) {
             {["top", "bottom"].includes(product.type) && (
               <Button
                 variant="contained"
-                sx={{ color: "lightgreen", fontWeight: "bold" }}
-                color="secondary"
+                sx={{
+                  color: "lightgreen",
+                  fontWeight: "bold",
+                  fontWeight: "400",
+                  fontFamily: "LEMON MILK",
+                  display:"flex",
+                  alignItems:"center",
+                  justifyContent:"center",
+                  gap:1,
+                  lineHeight:1,
+                  paddingTop:1.2,
+                  paddingBottom:1.2,
+                  background:"#704B9B"
+                }}
+                
                 onClick={() => {
                   console.debug("posting message");
                   window.postMessage(
@@ -126,10 +139,18 @@ export default function ProductPage({ products }) {
                   );
                   console.debug("messagePosted");
                 }}>
-                Przymierz z Siz3r
+                Try-on with <img height={14} style={{marginBottom:1}} src="/logoBig.png"/>
               </Button>
             )}
-            <Button variant="contained">Add to cart</Button>
+            <Button
+              variant="contained"
+              sx={{
+                color: "white",
+                fontWeight: "400",
+                fontFamily: "LEMON MILK",
+              }}>
+              Add to cart
+            </Button>
             <Divider />{" "}
             <div dangerouslySetInnerHTML={{ __html: product.description }} />
           </Card>
