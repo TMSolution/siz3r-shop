@@ -9,11 +9,13 @@ export default function Document(props) {
     <Html lang="en">
       <Head>
         <DocumentHeadTags {...props} />
-       
+        <link
+          href="https://fonts.cdnfonts.com/css/lemon-milk"
+          rel="stylesheet"></link>
       </Head>
       <body>
         <Main />
-        
+
         <NextScript />
       </body>
     </Html>

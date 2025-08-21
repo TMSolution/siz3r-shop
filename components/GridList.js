@@ -16,46 +16,30 @@ import { TransitionGroup } from "react-transition-group";
 
 export default function GridList({ list, userSizes }) {
   return (
-    <div style={{ maxWidth: "100vw", padding: 24 }}>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "start",
-          alignItems: "center",
-          gap: 24,
-        }}>
-        <h1>Product List</h1>
-        {userSizes && (
-          <h6 style={{ color: "gray" }}>
-            (filtered by user measurements and product availability)
-          </h6>
-        )}
-      </div>
-      <Grid
-        container
-        spacing={2}
-        component={TransitionGroup}
-        style={{ transition: "all 1s ease-in-out" }}>
-        {list.map((item, index) => {
-          return (
-            <Grow key={item.id}>
-              <Grid
-                item
-                sm={12}
-                md={6}
-                lg={3}
-                style={{ width: "100%" }}>
-                <GridItem
-                  item={item}
-                  userSizes={userSizes}
-                  index={index}
-                />
-              </Grid>
-            </Grow>
-          );
-        })}
-      </Grid>
-    </div>
+    <Grid
+      container
+      spacing={2}
+      component={TransitionGroup}
+      style={{ transition: "all 1s ease-in-out" }}>
+      {list.map((item, index) => {
+        return (
+          <Grow key={item.id}>
+            <Grid
+              item
+              sm={12}
+              md={6}
+              lg={4}
+              style={{ width: "100%" }}>
+              <GridItem
+                item={item}
+                userSizes={userSizes}
+                index={index}
+              />
+            </Grid>
+          </Grow>
+        );
+      })}
+    </Grid>
   );
 }
 
