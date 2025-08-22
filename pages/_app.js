@@ -112,7 +112,7 @@ export default function App(props) {
           newProducts[newItem.id] = newItem;
         } catch (err) {}
       });
-      console.debug(newProducts);
+    console.debug(newProducts);
     setProducts(newProducts);
   }, []);
   return (
@@ -122,7 +122,7 @@ export default function App(props) {
 
         <script
           id="siz3r_plugin"
-          src="https://siz3r.vercel.app/embedScript.js"
+          src="https://siz3r-prod.vercel.app/embedScript.js"
           noreload="true"
         />
         <Siz3rContextProvider>
