@@ -41,14 +41,14 @@ export default function Layout({ children, narrow, category, setCategory }) {
                 justifyContent: "center",
               }}>
               <img
-                style={{ maxHeight: "32px", maxWidth: "40vw" }}
+                style={{ maxHeight: "32px", maxWidth: "30vw" }}
                 src="/logo2.png"
               />
             </Link>
             {setCategory && (
               <Box
                 sx={{
-                  flex: 1,
+                 // flex: 0.6,
                   display: "flex",
                   justifyContent: "flex-end",
                   gap: { md: 3, sm: 2, xs: 0 },
