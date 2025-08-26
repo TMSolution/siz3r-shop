@@ -114,8 +114,8 @@ export default function ProductPage({ products }) {
                         name: product.name,
                         description: product.description,
                         price: product.price,
-                        currency: "USD",
-                        logo: "https://siz3r-shop.vercel.app/shopLogo.png",
+                        currency: "USD", 
+                        logo: "https://siz3r-shop.vercel.app/logo2.png",
                       },
                       token:
                         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJ6a3FxZ2JoZ3ZvNXpmdWo4YTF0ZmgiLCJidXNpbmVzc0lkIjoiZ1JvczdVYlhDR05MTnQzOHZ2UjdqdnJIOThyMSIsImlhdCI6MTc1MzM1ODY2NywiZXhwIjoxODM5NjcyMjY3fQ.-ID7Kq-UzrA8r6sndkGNhBRywCgUjDjktA1FpntDKRI",
