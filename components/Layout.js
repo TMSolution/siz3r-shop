@@ -45,7 +45,7 @@ export default function Layout({ children, narrow, category, setCategory }) {
                 src="/logo2.png"
               />
             </Link>
-            {/* {setCategory && (
+            {setCategory && (
               <Box
                 sx={{
                  // flex: 0.6,
@@ -81,7 +81,7 @@ export default function Layout({ children, narrow, category, setCategory }) {
                   Lower
                 </Button>
               </Box>
-            )} */}
+            )}
           </Container>
         </Toolbar>
       </AppBar>

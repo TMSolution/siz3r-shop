@@ -126,10 +126,7 @@ export default function App(props) {
           noreload="true"
         />
         <Siz3rContextProvider>
-          <Component
-            {...pageProps}
-            products={products}
-          />
+          <Component {...pageProps} products={products} />
         </Siz3rContextProvider>
       </ThemeProvider>
     </AppCacheProvider>
