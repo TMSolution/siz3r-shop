@@ -15,7 +15,7 @@ import { Siz3rContext } from "@/context/Siz3rContext";
 import { useContext } from "react";
 import Siz3rButton from "@/components/Siz3rButton";
 
-export default function ProductPage({ products }) {
+export default function ProductPage({ products, siz3rButtonVisible }) {
   const router = useRouter();
   const product = products[router.query.id] || {};
   const filename = product ? (product?.images?.[0] || "").split("/").pop() : "";
@@ -93,6 +93,7 @@ export default function ProductPage({ products }) {
                 <Siz3rButton
                   garment={`https://siz3r-shop.vercel.app/images/${filename}`}
                   type={product.type}
+                  siz3rButtonVisible={siz3rButtonVisible}
                 />
               </>
             )}
@@ -114,3 +115,20 @@ export default function ProductPage({ products }) {
     </Layout>
   );
 }
+ProductPage.getInitialProps = async (ctx) => {
+  return await fetch("https://siz3r-dev.vercel.app/api/check-availability", {
+    mode: "cors",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ keyId: "btw537108xvlzcbskuyp4" }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      return { siz3rButtonVisible: true };
+    })
+    .catch((err) => {
+      return { siz3rButtonVisible: false };
+    });
+};
