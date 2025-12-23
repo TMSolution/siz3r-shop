@@ -1,8 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 export default function handler(req, res) {
-  const { garment, type } = req.body;
-  fetch("https://siz3r-dev.vercel.app/api/tryon/authenticate", {
+  const { garment, type, advanced = false } = req.body;
+  fetch("http://localhost:3000/api/tryon/authenticate", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -11,6 +11,7 @@ export default function handler(req, res) {
       apiKey: process.env.SIZ3R_API_KEY,
       garment,
       type,
+      advanced,
     }),
   })
     .then((result) => result.json())

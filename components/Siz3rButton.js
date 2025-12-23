@@ -1,7 +1,13 @@
 import { Button, Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
 
-export default function Siz3rButton({ garment, type, siz3rButtonVisible }) {
+export default function Siz3rButton({
+  garment,
+  type,
+  siz3rButtonVisible,
+  advanced,
+  label = "Try on with Siz3r",
+}) {
   return (
     siz3rButtonVisible && (
       <Button
@@ -19,7 +25,11 @@ export default function Siz3rButton({ garment, type, siz3rButtonVisible }) {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ garment: garment, type: type }),
+            body: JSON.stringify({
+              garment: garment,
+              type: type,
+              advanced: Boolean(advanced),
+            }),
           })
             .then((result) => result.json())
             .then((result) => {
@@ -35,7 +45,7 @@ export default function Siz3rButton({ garment, type, siz3rButtonVisible }) {
             });
         }}
       >
-        Try on with Siz3r
+        {label}
       </Button>
     )
   );

@@ -121,8 +121,10 @@ export default function App(props) {
         <CssBaseline />
 
         <script
+          defer
+          async
           id="siz3r_plugin"
-          src="https://siz3r.com/embedScript.js"
+          src="https://siz3r-dev.vercel.app/embedScript.js"
           noreload="true"
         />
         <Siz3rContextProvider>
