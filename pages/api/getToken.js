@@ -2,7 +2,7 @@
 
 export default function handler(req, res) {
   const { garment, type } = req.body;
-  fetch("https://siz3r-dev.vercel.app/api/tryon/authenticate", {
+  fetch("https://siz3r.com/api/tryon/authenticate/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
