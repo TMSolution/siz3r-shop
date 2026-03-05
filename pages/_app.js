@@ -124,7 +124,7 @@ export default function App(props) {
           defer
           async
           id="siz3r_plugin"
-          src="https://siz3r-dev.vercel.app/embedScript.js"
+          src="https://siz3r-dev.vercel.app/embedScriptDev.js"
           noreload="true"
         />
         <Siz3rContextProvider>
