@@ -140,7 +140,69 @@ export default function ProductPage({
     </Layout>
   );
 }
-ProductPage.getInitialProps = async (ctx) => {
+// ProductPage.getInitialProps = async (ctx) => {
+//   const parseCookies = (req) => {
+//     if (!req) return {};
+//     const list = {};
+//     const rc = req.headers.cookie;
+
+//     rc &&
+//       rc.split(";").forEach(function (cookie) {
+//         const parts = cookie.split("=");
+//         list[parts.shift().trim()] = decodeURI(parts.join("="));
+//       });
+
+//     return list;
+//   };
+//   let cookies;
+
+//   if (ctx?.req) {
+//     // Server-side: Cookies are in the request headers
+//     cookies = parseCookies(ctx.req);
+//     // If making further API calls from the server, you may need to manually attach the cookie header
+//     // e.g., axios.defaults.headers.get.Cookie = req.headers.cookie;
+//   } else {
+//     // Client-side: Cookies are accessed via the browser's document.cookie
+//     cookies = document.cookie; // you might need a client-side parsing function here as well
+//   }
+//   let measurement;
+//   if (cookies?.["siz3r_user_id"]) {
+//     await fetch(process.env.SIZ3R_URL + "/api/get-measurement", {
+//       mode: "cors",
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({ uid: cookies?.["siz3r_user_id"] }),
+//     })
+//       .then((res) => res.json())
+//       .then((data) => {
+//         measurement = data.size;
+//       })
+//       .catch((err) => {
+//         console.debug(err);
+//       });
+//   }
+//   let available = false;
+//   await fetch(process.env.SIZ3R_URL + "/api/check-availability", {
+//     mode: "cors",
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ keyId: "eix292dnhoff0n5w5fa3h" }),
+//   })
+//     .then((res) => res.json())
+//     .then((data) => {
+//       available = data?.message === "available";
+//     })
+//     .catch((err) => {
+//       available = false;
+//     });
+//   return { siz3rButtonVisible: available, measurement };
+// };
+
+export const getServerSideProps = async (ctx) => {
   const parseCookies = (req) => {
     if (!req) return {};
     const list = {};
@@ -199,5 +261,7 @@ ProductPage.getInitialProps = async (ctx) => {
     .catch((err) => {
       available = false;
     });
-  return { siz3rButtonVisible: available, measurement };
+  return {
+    props: { siz3rButtonVisible: available, measurement: measurement || null },
+  };
 };
