@@ -103,6 +103,22 @@ export default function ProductPage({
                   garment={`https://siz3r-shop.vercel.app/images/${filename}`}
                   type={product.type}
                   siz3rButtonVisible={siz3rButtonVisible}
+                  label="Try on with Siz3r - turbo"
+                  model="turbo"
+                />
+                <Siz3rButton
+                  garment={`https://siz3r-shop.vercel.app/images/${filename}`}
+                  type={product.type}
+                  siz3rButtonVisible={siz3rButtonVisible}
+                  label="Try on with Siz3r - standard"
+                  model="standard"
+                />
+                <Siz3rButton
+                  garment={`https://siz3r-shop.vercel.app/images/${filename}`}
+                  type={product.type}
+                  siz3rButtonVisible={siz3rButtonVisible}
+                  label="Try on with Siz3r - premium"
+                  model="premium"
                 />
               </>
             )}
@@ -151,7 +167,7 @@ ProductPage.getInitialProps = async (ctx) => {
   }
   let measurement;
   if (cookies?.["siz3r_user_id"]) {
-    await fetch("https://siz3r-dev.vercel.app/api/get-measurement", {
+    await fetch(process.env.SIZ3R_URL + "/api/get-measurement", {
       mode: "cors",
       method: "POST",
       headers: {
@@ -168,7 +184,7 @@ ProductPage.getInitialProps = async (ctx) => {
       });
   }
   let available = false;
-  await fetch("https://siz3r-dev.vercel.app/api/check-availability", {
+  await fetch(process.env.SIZ3R_URL + "/api/check-availability", {
     mode: "cors",
     method: "POST",
     headers: {
@@ -178,8 +194,7 @@ ProductPage.getInitialProps = async (ctx) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      
-      available = data?.message==="available";
+      available = data?.message === "available";
     })
     .catch((err) => {
       available = false;

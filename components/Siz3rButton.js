@@ -5,7 +5,7 @@ export default function Siz3rButton({
   garment,
   type,
   siz3rButtonVisible,
-  advanced,
+  model = "turbo",
   label = "Try on with Siz3r",
 }) {
   return (
@@ -28,7 +28,7 @@ export default function Siz3rButton({
           body: JSON.stringify({
             garment: garment,
             type: type,
-            advanced: Boolean(advanced),
+            model: model,
           }),
         })
           .then((result) => result.json())

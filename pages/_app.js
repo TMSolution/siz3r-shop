@@ -64,7 +64,7 @@ export default function App(props) {
           // let description = JSON.parse(item.description.replaceAll("'", `"`));
           // let images = JSON.parse(item.images.replaceAll("'", `"`));
           console.debug(
-            values[values.findIndex((value) => value === "Size") + 1]
+            values[values.findIndex((value) => value === "Size") + 1],
           );
           let sizes = values[values.findIndex((value) => value === "Size") + 1]
             .replace("28", "XS")
@@ -78,16 +78,16 @@ export default function App(props) {
           if (sizes.length > 2) {
             sizes.splice(
               Math.floor(Math.random() * (sizes.length - 0 + 1) + 0),
-              1
+              1,
             );
             if (type === "top") {
               sizes.splice(
                 Math.floor(Math.random() * (sizes.length - 0 + 1) + 0),
-                1
+                1,
               );
               sizes.splice(
                 Math.floor(Math.random() * (sizes.length - 0 + 1) + 0),
-                1
+                1,
               );
             }
           }
@@ -124,7 +124,7 @@ export default function App(props) {
           defer
           async
           id="siz3r_plugin"
-          src="https://siz3r-dev.vercel.app/embedScriptDev.js"
+          src={process.env.SIZ3R_URL + "/embedScriptDev.js"}
           noreload="true"
         />
         <Siz3rContextProvider>
