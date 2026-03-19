@@ -174,7 +174,7 @@ ProductPage.getInitialProps = async (ctx) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ keyId: "m8920ctr4199pq2epsl16" }),
+    body: JSON.stringify({ keyId: "eix292dnhoff0n5w5fa3h" }),
   })
     .then((res) => res.json())
     .then((data) => {

@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    SIZ3R_API_KEY: "d18jias58ft7nb2o63p0w3cfdh6ge3b4jgt9kr7su5d",
+    SIZ3R_API_KEY: "myyjz3ej2gxb8hn1zgj1aecp5i7e5afsfl3sd0q86ld",
   },
 };
 
