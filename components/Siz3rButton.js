@@ -7,6 +7,7 @@ export default function Siz3rButton({
   siz3rButtonVisible,
   model = "turbo",
   label = "Try on with Siz3r",
+  info = {},
 }) {
   return (
     <Button
@@ -37,6 +38,9 @@ export default function Siz3rButton({
               JSON.stringify({
                 type: "siz3r_tryon",
                 token: result.token,
+                info: {
+                  ...info,
+                },
               }),
             );
           })

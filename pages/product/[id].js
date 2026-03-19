@@ -33,6 +33,13 @@ export default function ProductPage({
     }
   };
 
+  let infoObj = {
+    name: product.name,
+    price: product.price,
+    currency: "$",
+    description: product.description,
+  };
+
   return (
     <Layout narrow>
       {product.id && (
@@ -105,6 +112,7 @@ export default function ProductPage({
                   siz3rButtonVisible={siz3rButtonVisible}
                   label="Try on with Siz3r - turbo"
                   model="turbo"
+                  info={infoObj}
                 />
                 <Siz3rButton
                   garment={`https://siz3r-shop.vercel.app/images/${filename}`}
@@ -112,6 +120,7 @@ export default function ProductPage({
                   siz3rButtonVisible={siz3rButtonVisible}
                   label="Try on with Siz3r - standard"
                   model="standard"
+                  info={infoObj}
                 />
                 <Siz3rButton
                   garment={`https://siz3r-shop.vercel.app/images/${filename}`}
@@ -119,6 +128,7 @@ export default function ProductPage({
                   siz3rButtonVisible={siz3rButtonVisible}
                   label="Try on with Siz3r - premium"
                   model="premium"
+                  info={infoObj}
                 />
               </>
             )}
