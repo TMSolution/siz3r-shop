@@ -16,7 +16,8 @@ export default function Layout({ children, narrow, category, setCategory }) {
       sx={{
         padding: { md: "calc(64px + 24px) 24px 0", xs: "calc(64px) 8px 0" },
         paddingTop: "calc(64px + 24px)",
-      }}>
+      }}
+    >
       <AppBar>
         <Toolbar sx={{ padding: 0 }}>
           <Container
@@ -25,7 +26,8 @@ export default function Layout({ children, narrow, category, setCategory }) {
               alignItems: "center",
               justifyContent: setCategory && "space-between",
               gap: 2,
-            }}>
+            }}
+          >
             {!setCategory && (
               <Link href="/">
                 <IconButton>
@@ -39,11 +41,9 @@ export default function Layout({ children, narrow, category, setCategory }) {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-              }}>
-              <img
-                style={{ maxHeight: "32px", maxWidth: "30vw" }}
-                src="/logo2.png"
-              />
+              }}
+            >
+              <img style={{ maxHeight: "48px" }} src="/size4u.png" />
             </Link>
             {/* {setCategory && (
               <Box

@@ -15,7 +15,11 @@ import { Siz3rContext } from "@/context/Siz3rContext";
 import { useContext } from "react";
 import Siz3rButton from "@/components/Siz3rButton";
 
-export default function ProductPage({ products }) {
+export default function ProductPage({
+  products,
+  siz3rButtonVisible,
+  measurement,
+}) {
   const router = useRouter();
   const product = products[router.query.id] || {};
   const filename = product ? (product?.images?.[0] || "").split("/").pop() : "";
@@ -27,6 +31,13 @@ export default function ProductPage({ products }) {
       case "bottom":
         return "lower";
     }
+  };
+
+  let infoObj = {
+    name: product.name,
+    price: product.price,
+    currency: "$",
+    description: product.description,
   };
 
   return (
@@ -75,11 +86,16 @@ export default function ProductPage({ products }) {
             </div>
             <Divider />
             <div style={{ gap: 8, display: "flex" }}>
-              {product.sizes.map((size) => (
+              {["xs", "s", "m", "l", "xl", "xxl"].map((size) => (
                 <ToggleButton
                   style={{
                     fontWeight: "bold",
-                    // border: recommended.toUpperCase() === size && "2px solid #3C1992",
+                    border:
+                      measurement?.toLowerCase() === size.toLowerCase() &&
+                      "2px solid rgba(0, 210, 120,0.7)",
+                    background:
+                      measurement?.toLowerCase() === size.toLowerCase() &&
+                      "linear-gradient(120deg,rgba(0, 210, 120,0.7),rgba(129, 74, 200,0.7))",
                   }}
                 >
                   {size}
@@ -93,6 +109,26 @@ export default function ProductPage({ products }) {
                 <Siz3rButton
                   garment={`https://siz3r-shop.vercel.app/images/${filename}`}
                   type={product.type}
+                  siz3rButtonVisible={siz3rButtonVisible}
+                  label="Try on with Siz3r - turbo"
+                  model="turbo"
+                  info={infoObj}
+                />
+                <Siz3rButton
+                  garment={`https://siz3r-shop.vercel.app/images/${filename}`}
+                  type={product.type}
+                  siz3rButtonVisible={siz3rButtonVisible}
+                  label="Try on with Siz3r - standard"
+                  model="standard"
+                  info={infoObj}
+                />
+                <Siz3rButton
+                  garment={`https://siz3r-shop.vercel.app/images/${filename}`}
+                  type={product.type}
+                  siz3rButtonVisible={siz3rButtonVisible}
+                  label="Try on with Siz3r - premium"
+                  model="premium"
+                  info={infoObj}
                 />
               </>
             )}
@@ -114,3 +150,128 @@ export default function ProductPage({ products }) {
     </Layout>
   );
 }
+// ProductPage.getInitialProps = async (ctx) => {
+//   const parseCookies = (req) => {
+//     if (!req) return {};
+//     const list = {};
+//     const rc = req.headers.cookie;
+
+//     rc &&
+//       rc.split(";").forEach(function (cookie) {
+//         const parts = cookie.split("=");
+//         list[parts.shift().trim()] = decodeURI(parts.join("="));
+//       });
+
+//     return list;
+//   };
+//   let cookies;
+
+//   if (ctx?.req) {
+//     // Server-side: Cookies are in the request headers
+//     cookies = parseCookies(ctx.req);
+//     // If making further API calls from the server, you may need to manually attach the cookie header
+//     // e.g., axios.defaults.headers.get.Cookie = req.headers.cookie;
+//   } else {
+//     // Client-side: Cookies are accessed via the browser's document.cookie
+//     cookies = document.cookie; // you might need a client-side parsing function here as well
+//   }
+//   let measurement;
+//   if (cookies?.["siz3r_user_id"]) {
+//     await fetch(process.env.SIZ3R_URL + "/api/get-measurement", {
+//       mode: "cors",
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({ uid: cookies?.["siz3r_user_id"] }),
+//     })
+//       .then((res) => res.json())
+//       .then((data) => {
+//         measurement = data.size;
+//       })
+//       .catch((err) => {
+//         console.debug(err);
+//       });
+//   }
+//   let available = false;
+//   await fetch(process.env.SIZ3R_URL + "/api/check-availability", {
+//     mode: "cors",
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ keyId: "eix292dnhoff0n5w5fa3h" }),
+//   })
+//     .then((res) => res.json())
+//     .then((data) => {
+//       available = data?.message === "available";
+//     })
+//     .catch((err) => {
+//       available = false;
+//     });
+//   return { siz3rButtonVisible: available, measurement };
+// };
+
+export const getServerSideProps = async (ctx) => {
+  const parseCookies = (req) => {
+    if (!req) return {};
+    const list = {};
+    const rc = req.headers.cookie;
+
+    rc &&
+      rc.split(";").forEach(function (cookie) {
+        const parts = cookie.split("=");
+        list[parts.shift().trim()] = decodeURI(parts.join("="));
+      });
+
+    return list;
+  };
+  let cookies;
+
+  if (ctx?.req) {
+    // Server-side: Cookies are in the request headers
+    cookies = parseCookies(ctx.req);
+    // If making further API calls from the server, you may need to manually attach the cookie header
+    // e.g., axios.defaults.headers.get.Cookie = req.headers.cookie;
+  } else {
+    // Client-side: Cookies are accessed via the browser's document.cookie
+    cookies = document.cookie; // you might need a client-side parsing function here as well
+  }
+  let measurement;
+  if (cookies?.["siz3r_user_id"]) {
+    await fetch(process.env.SIZ3R_URL + "/api/get-measurement", {
+      mode: "cors",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ uid: cookies?.["siz3r_user_id"] }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        measurement = data.size;
+      })
+      .catch((err) => {
+        console.debug(err);
+      });
+  }
+  let available = false;
+  await fetch(process.env.SIZ3R_URL + "/api/check-availability", {
+    mode: "cors",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ keyId: "eix292dnhoff0n5w5fa3h" }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      available = data?.message === "available";
+    })
+    .catch((err) => {
+      available = false;
+    });
+  return {
+    props: { siz3rButtonVisible: available, measurement: measurement || null },
+  };
+};

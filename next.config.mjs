@@ -2,7 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    SIZ3R_API_KEY: "7qac2r36p8rxf7r5ina27iglh2vpgzpkm1ku03020p",
+    SIZ3R_API_KEY: "myyjz3ej2gxb8hn1zgj1aecp5i7e5afsfl3sd0q86ld",
+    SIZ3R_URL: "https://siz3r-dev.vercel.app",
+    //SIZ3R_URL: "http://localhost:3000",
   },
 };
 

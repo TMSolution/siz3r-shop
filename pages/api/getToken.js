@@ -1,8 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 export default function handler(req, res) {
-  const { garment, type } = req.body;
-  fetch("https://siz3r.com/api/tryon/authenticate/", {
+  const { garment, type, model = "turbo" } = req.body;
+  fetch(process.env.SIZ3R_URL + "/api/tryon/authenticate", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -11,6 +11,7 @@ export default function handler(req, res) {
       apiKey: process.env.SIZ3R_API_KEY,
       garment,
       type,
+      model,
     }),
   })
     .then((result) => result.json())
