@@ -262,7 +262,7 @@ export const getServerSideProps = async (ctx) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ keyId: "eix292dnhoff0n5w5fa3h" }),
+    body: JSON.stringify({ keyId: process.env.SIZ3R_API_KEY_ID }),
   })
     .then((res) => res.json())
     .then((data) => {
