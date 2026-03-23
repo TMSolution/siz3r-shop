@@ -6,7 +6,6 @@ const nextConfig = {
     //SIZ3R_URL: "https://siz3r-dev.vercel.app",
     SIZ3R_URL: "https://siz3r.com",
     SIZ3R_API_KEY_ID: "mfobk9bx6qojjywmfx5q",
-    //SIZ3R_URL: "http://localhost:3000",
   },
 };
 
