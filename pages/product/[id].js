@@ -122,14 +122,14 @@ export default function ProductPage({
                   model="standard"
                   info={infoObj}
                 />
-                {/* <Siz3rButton
+                <Siz3rButton
                   garment={`https://siz3r-shop.vercel.app/images/${filename}`}
                   type={product.type}
                   siz3rButtonVisible={siz3rButtonVisible}
                   label="Try on with Siz3r - premium"
                   model="premium"
                   info={infoObj}
-                /> */}
+                />
               </>
             )}
             <Button
