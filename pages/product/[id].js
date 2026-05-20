@@ -110,32 +110,8 @@ export default function ProductPage({
                   garment={`https://siz3r-shop.vercel.app/images/${filename}`}
                   type={product.type}
                   siz3rButtonVisible={siz3rButtonVisible}
-                  label="Try on with Siz3r - turbo"
-                  model="turbo"
-                  info={infoObj}
-                />
-                <Siz3rButton
-                  garment={`https://siz3r-shop.vercel.app/images/${filename}`}
-                  type={product.type}
-                  siz3rButtonVisible={siz3rButtonVisible}
-                  label="Try on with Siz3r - standard"
-                  model="standard"
-                  info={infoObj}
-                />
-                <Siz3rButton
-                  garment={`https://siz3r-shop.vercel.app/images/${filename}`}
-                  type={product.type}
-                  siz3rButtonVisible={siz3rButtonVisible}
-                  label="Try on with Siz3r - premium"
-                  model="premium"
-                  info={infoObj}
-                />
-                <Siz3rButton
-                  garment={`https://siz3r-shop.vercel.app/images/${filename}`}
-                  type={product.type}
-                  siz3rButtonVisible={siz3rButtonVisible}
-                  label="Try on with Siz3r - premium turbo"
-                  model="turbopremium"
+                  label="Try on with Siz3r"
+                  models={["standard", "premium", "turbo", "turbopremium"]}
                   info={infoObj}
                 />
               </>
