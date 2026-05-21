@@ -124,7 +124,7 @@ export default function App(props) {
           defer
           async
           id="siz3r_plugin"
-          src={process.env.SIZ3R_URL + "/embedScript.js"}
+          src={process.env.SIZ3R_URL + "/embedScriptDev.js"}
           noreload="true"
         />
         <Siz3rContextProvider>
