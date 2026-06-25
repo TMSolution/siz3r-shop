@@ -111,7 +111,7 @@ export default function ProductPage({
                   type={product.type}
                   siz3rButtonVisible={siz3rButtonVisible}
                   label="Try on with Siz3r"
-                  models={["standard", "premium", "turbo", "turbopremium"]}
+                  models={["standard", "turbo"]}
                   info={infoObj}
                 />
               </>
