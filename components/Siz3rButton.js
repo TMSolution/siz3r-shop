@@ -45,7 +45,7 @@ async function openPlugin({ garment, type, model, info, setLoading }) {
 export default function SplitButton({ models, garment, type, info }) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(3);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const [loading, setLoading] = React.useState(false);
   const handleClick = () => {
